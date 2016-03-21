@@ -1,0 +1,11 @@
+class CreateRelations < ActiveRecord::Migration
+  def change
+    create_table :relations do |t|
+      t.string :status
+      t.references :user, index: true, foreign_key: true
+      t.references :event, index: true, foreign_key: true
+
+      t.timestamps null: false
+    end
+  end
+end

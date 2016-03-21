@@ -1,0 +1,20 @@
+
+<form action="/users" method="post">
+  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+  <p>First Name: <input type="text" name="user[first_name]"></p>
+  <p>Last Name: <input type="text" name="user[last_name]"></p>
+  <p>Email: <input type="text" name="user[email]"></p>
+  <p>Location: <input type="text" name="user[location]"></p>
+  <p>State: <input type="text" name="user[state]"</p>
+  <p>Password: <input type="password" name="user[password]"></p>
+  <p>Confirmation: <input type="password" name="user[password_confirmation]"></p>
+  <input type='submit' value='Submit'>
+</form>
+
+<%= form_for @user, url: {controller: "sessions", action:"create"} do |f| %>
+  <p><%= f.label :email %>:
+  <%= f.text_field :email %></p>
+  <p><%= f.label :password %>:
+  <%= f.password_field :password %></p>
+  <%= submit_tag 'Log In' %>
+<% end %>

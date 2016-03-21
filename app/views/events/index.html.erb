@@ -1,0 +1,54 @@
+<h1>Welcome, <%= User.find(session[:user_id]).first_name %></h1>
+<h2>Here are some of the events in your state:</h2>
+<table>
+	<tr>
+		<th>Name</th>
+		<th>Date</th>
+		<th>Location</th>
+		<th>Host</th>
+		<th>Active/Status</th>
+	</tr>
+	<% @local_events.each do |l| %>
+	<% l.events.each do |e| %>
+	<tr>
+		<td><%= e.name%></td>
+		<td><%=e['date']%></td>
+		<td><%=l['location']%></td>
+		<td><%= %></td>
+		<td>ACTION</td>
+	</tr>
+	<% end %>
+	<% end %>
+</table>
+<h2>Here are some of the events in other states:</h2>
+<table>
+
+	<tr>
+		<th>Name</th>
+		<th>Date</th>
+		<th>Location</th>
+		<th>Host</th>
+		<th>Active/Status</th>
+	</tr>
+	<% @outside_events.each do |l| %>
+	<% l.events.each do |e| %>
+	<tr>
+		<td><%= e.name%></td>
+		<td><%=e['date']%></td>
+		<td><%=l['location']%></td>
+		<td><%= %></td>
+		<td>ACTION</td>
+	</tr>
+	<% end %>
+	<% end %>
+</table>
+<h2>Add Event</h2>
+<form action="/events" method="post">
+  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+  <p>Name: <input type="text" name="event[name]"></p>
+  <p>Date: <input type="date" name="event[date]"></p>
+  <p>Location: <input type="text" name="event[location]"></p>
+  <p>State: <input type="text" name="event[state]"</p>
+  <input type='submit' value='Submit'>
+</form>
+
